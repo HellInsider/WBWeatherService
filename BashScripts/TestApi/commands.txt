@@ -1,0 +1,11 @@
+Get user list:
+curl http://localhost:8080/users
+
+Get cities list:
+curl http://localhost:8080/cities
+
+Get weather list for city:
+curl "http://localhost:8080/forecast/?city=London&country=GB"
+
+Get weather for city in date:
+curl "http://localhost:8080/fullforecast/?city=London&country=UK&date=1666818000"
