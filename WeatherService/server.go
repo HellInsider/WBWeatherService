@@ -9,7 +9,7 @@ import (
 )
 
 func GetListCities(c *gin.Context) {
-	log.Info("Request: ", c.Request.Body)
+	log.Info("Request: al cities")
 	err, cities := database.GetCitiesList()
 	if err != nil {
 		notFound(c, err, "Internal server error")
@@ -20,7 +20,7 @@ func GetListCities(c *gin.Context) {
 }
 
 func GetCityShortPrediction(c *gin.Context) {
-	log.Info("Short prediction request: ", c.Request.Body)
+	log.Info("Short prediction request: ", c.Query("city"), c.Query("country"))
 	err, resp := database.GetCityWeather(c.Query("city"), c.Query("country"))
 	if err != nil {
 		notFound(c, err, "City not found")
@@ -31,7 +31,7 @@ func GetCityShortPrediction(c *gin.Context) {
 }
 
 func GetCityLongPrediction(c *gin.Context) {
-	log.Info("Long prediction request: ", c.Request.Body)
+	log.Info("Long prediction request: ", c.Query("city"), c.Query("country"), c.Query("date"))
 	date, err := strconv.Atoi(c.Query("date"))
 	if err != nil {
 		badRequest(c, err, "Can't parse user's date")

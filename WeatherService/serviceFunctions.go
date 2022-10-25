@@ -4,7 +4,6 @@ import (
 	"WeatherService/database"
 	"WeatherService/models/owRespModel"
 	"encoding/json"
-	"fmt"
 	log "github.com/sirupsen/logrus"
 	"io"
 	"io/ioutil"
@@ -142,7 +141,7 @@ func AsyncWeatherUpdate(period time.Duration, closeCh <-chan struct{}, errCh cha
 		default:
 			if time.Since(startTime) >= period {
 				startTime = time.Now()
-				fmt.Println("Updating weather")
+				log.Info("Async updating weather")
 				WriteWeatherToDB(errCh)
 			}
 		}
